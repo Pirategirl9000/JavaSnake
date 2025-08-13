@@ -5,12 +5,23 @@ import java.util.ArrayList;
 
 public class Snake {
     /**
-     * Color of the Game.Snake
+     * Color of the Snake
      */
     public Color color = Color.RED;
 
+    /**
+     * Speed in pixels/tick of the snake
+     */
     private final int SPEED;
+
+    /**
+     * Height of a segment in pixels, should align on a 1920x1080 display
+     */
     private final int SEGMENTWIDTH;
+
+    /**
+     * Height of a segment in pixels, should align on a 1920x1080 display
+     */
     private final int SEGMENTHEIGHT;
 
     /**
@@ -41,8 +52,10 @@ public class Snake {
     public ArrayList<Integer[]> positions = new ArrayList<>();
 
     /**
-     * Creates a new snake with a set speed and head position
+     * Creates a new snake with a set speed, width, height, and head position
      * @param speed speed in pixels/tick
+     * @param segmentWidth width of segment in pixels
+     * @param segmentHeight height of segment in pixels
      * @param x x-position of the head
      * @param y y-position of the head
      */
@@ -55,8 +68,10 @@ public class Snake {
     }
 
     /**
-     * Creates a new snake with a set speed and adds a default head segment at Game.Snake.segments[0]
+     * Creates a new snake with a set speed, width, and height with a default head position
      * @param speed speed in pixels/tick
+     * @param segmentWidth width of segment in pixels
+     * @param segmentHeight height of segment in pixels
      */
     public Snake(int speed, int segmentWidth, int segmentHeight) {
         SPEED = speed;
@@ -66,6 +81,9 @@ public class Snake {
         SEGMENTHEIGHT = segmentHeight;
     }
 
+    /**
+     * Creates a new snake with default speed, width, height, and head position
+     */
     public Snake() {
         SPEED = 20;
         segments.add(new Segment(40, 40));
