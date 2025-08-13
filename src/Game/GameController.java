@@ -25,9 +25,7 @@ public class GameController extends JPanel implements Runnable {
     }
 
     private void tick() {
-
-        //TODO SNAKE LOGIC HERE
-
+        snake.move();
         repaint();
     }
 
@@ -54,7 +52,6 @@ public class GameController extends JPanel implements Runnable {
         while (isAlive) {
             long startTime = System.currentTimeMillis();
 
-            snake.move();
             tick();
 
             long elapsedTime = System.currentTimeMillis() - startTime;
