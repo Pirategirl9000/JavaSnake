@@ -151,11 +151,11 @@ public class Snake {
                 yVel = (isOneSegment || yVel != -1) ? SPEED : yVel;  // If snake is 1 segment long, or it isn't facing up then it can go down
                 break;
             case "left":
-                xVel = (isOneSegment || xVel != 1) ? -SPEED : xVel;  // If Game.Snake is 1 segment long, or it isn't facing right then it can go left
+                xVel = (isOneSegment || xVel != 1) ? -SPEED : xVel;  // If snake is 1 segment long, or it isn't facing right then it can go left
                 yVel = 0;
                 break;
             case "right":
-                xVel = (isOneSegment || xVel != -1) ? SPEED : xVel;  // If Game.Snake is 1 segment long, or it isn't facing left then it can go right
+                xVel = (isOneSegment || xVel != -1) ? SPEED : xVel;  // If snake is 1 segment long, or it isn't facing left then it can go right
                 yVel = 0;
                 break;
             default:
