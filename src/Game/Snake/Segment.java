@@ -1,4 +1,4 @@
-package Snake;
+package Game.Snake;
 
 /**
  * Defines a single segment of the snake
@@ -47,10 +47,12 @@ public class Segment {
         this.y = y;
     }
 
+    /**
+     * Gives the x and y position of the segment as a string
+     * @return string representation of the segment's position
+     */
     @Override
     public String toString() {
         return "Segment [x=" + x + ", y=" + y + "]";
     }
-
-
 }

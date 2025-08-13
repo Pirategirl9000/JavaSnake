@@ -1,8 +1,8 @@
-import javax.swing.*;
+import Game.GameController;
 
 public class Main {
     public static void main(String[] args) {
-        Canvas canvas = new Canvas();
+        GameController canvas = new GameController();
 
 
     }

@@ -1,15 +1,17 @@
-package Snake;
+package Game.Snake;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 public class Snake {
     /**
-     * Color of the Snake
+     * Color of the Game.Snake
      */
     public Color color = Color.RED;
 
     private final int SPEED;
+    private final int SEGMENTWIDTH;
+    private final int SEGMENTHEIGHT;
 
     /**
      * Arraylist of all the segments of the snake<br>
@@ -39,23 +41,56 @@ public class Snake {
     public ArrayList<Integer[]> positions = new ArrayList<>();
 
     /**
-     * Creates a new snake and adds a head segment at Snake.segments[0]
+     * Creates a new snake with a set speed and head position
+     * @param speed speed in pixels/tick
+     * @param x x-position of the head
+     * @param y y-position of the head
      */
-    public Snake(int speed) {
+    public Snake(int speed, int segmentWidth, int segmentHeight, int x, int y) {
+        SPEED = speed;
+        segments.add(new Segment(x, y));
+        positions.add(new Integer[]{x, y});
+        SEGMENTWIDTH = segmentWidth;
+        SEGMENTHEIGHT = segmentHeight;
+    }
+
+    /**
+     * Creates a new snake with a set speed and adds a default head segment at Game.Snake.segments[0]
+     * @param speed speed in pixels/tick
+     */
+    public Snake(int speed, int segmentWidth, int segmentHeight) {
         SPEED = speed;
         segments.add(new Segment(40, 40));
+        positions.add(new Integer[] {40, 40});
+        SEGMENTWIDTH = segmentWidth;
+        SEGMENTHEIGHT = segmentHeight;
+    }
+
+    public Snake() {
+        SPEED = 20;
+        segments.add(new Segment(40, 40));
+        positions.add(new Integer[] {40, 40});
+        SEGMENTWIDTH = 20;
+        SEGMENTHEIGHT = 20;
     }
 
     public void move() {
         Segment head = segments.get(0);
-        head.move(head.getX() + xVel, head.getY() + yVel);
+        int newX = head.getX() + xVel;
+        int newY = head.getY() + yVel;
+        head.move(newX, newY);
 
+        for (int i = 1; i < segments.size(); i++) {
+            Integer[] newPosition = positions.get(i-1);
+            segments.get(i).move(newPosition[0], newPosition[1]);
+        }
 
+        // Collision logic should go here
 
-
-
-
+        positions.add(new Integer[]{newX, newY});  // Add the new head position to the list of positions
+        positions.remove(0);
     }
+
 
     /**
      * Changes the direction of the snake
@@ -83,11 +118,11 @@ public class Snake {
                 yVel = (isOneSegment || yVel != -1) ? SPEED : yVel;  // If snake is 1 segment long, or it isn't facing up then it can go down
                 break;
             case "left":
-                xVel = (isOneSegment || xVel != 1) ? -SPEED : xVel;  // If Snake is 1 segment long, or it isn't facing right then it can go left
+                xVel = (isOneSegment || xVel != 1) ? -SPEED : xVel;  // If Game.Snake is 1 segment long, or it isn't facing right then it can go left
                 yVel = 0;
                 break;
             case "right":
-                xVel = (isOneSegment || xVel != -1) ? SPEED : xVel;  // If Snake is 1 segment long, or it isn't facing left then it can go right
+                xVel = (isOneSegment || xVel != -1) ? SPEED : xVel;  // If Game.Snake is 1 segment long, or it isn't facing left then it can go right
                 yVel = 0;
                 break;
             default:
