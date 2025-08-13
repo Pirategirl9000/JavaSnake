@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 public class Display extends JFrame {
     public Display() {
-        this.setTitle("Game.Snake Game");
+        this.setTitle("Snake Game");
         this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
         this.setBackground(Color.DARK_GRAY);
