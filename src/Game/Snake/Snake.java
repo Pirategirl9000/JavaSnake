@@ -74,6 +74,21 @@ public class Snake {
         SEGMENTHEIGHT = 20;
     }
 
+    /**
+     * Returns the height of a segment within the snake
+     * @return height of segment
+     */
+    public int getHeight() { return SEGMENTHEIGHT; }
+
+    /**
+     * Returns the width of a segment within the snake
+     * @return width of segment
+     */
+    public int getWidth() { return SEGMENTWIDTH; }
+
+    /**
+     * Moves the snake and it's segments forward one game tick in accordance with its current direction
+     */
     public void move() {
         Segment head = segments.get(0);
         int newX = head.getX() + xVel;
