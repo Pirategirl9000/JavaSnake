@@ -14,6 +14,7 @@ public class GameController extends JPanel implements Runnable {
     private Thread gameThread;
 
     public GameController() {
+        this.setBackground(Color.DARK_GRAY);
         snake = new Snake(20, 20, 20, 40, 40);
         startLoop();
     }
@@ -44,7 +45,7 @@ public class GameController extends JPanel implements Runnable {
 
         for (int i = 0; i < snake.segments.size(); i++) {
             Segment seg = snake.segments.get(i);
-            g.drawRect(seg.getX(), seg.getY(), WIDTH, HEIGHT);
+            g.fillRect(seg.getX(), seg.getY(), WIDTH, HEIGHT);
         }
     }
 

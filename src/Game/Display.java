@@ -1,6 +1,7 @@
 package Game;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -9,6 +10,7 @@ public class Display extends JFrame {
         this.setTitle("Game.Snake Game");
         this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
+        this.setBackground(Color.DARK_GRAY);
         GameController game = new GameController();
 
         // Because of the Game thread we need to kill the window in our own way rather than
