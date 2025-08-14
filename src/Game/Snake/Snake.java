@@ -43,7 +43,7 @@ public class Snake {
      * Arraylist of all the segments of the snake<br>
      * segments[0] = head of snake
      */
-    public ArrayList<Segment> segments = new ArrayList<>();
+    public ArrayList<SnakeSegment> segments = new ArrayList<>();
     /**
      * Current x-velocity of the snake, has three states:<br>
      * [left] = -SPEED<br>
@@ -102,9 +102,9 @@ public class Snake {
         SPEED = speed;
         SEGMENTWIDTH = segmentWidth;
         SEGMENTHEIGHT = segmentHeight;
-        segments.add(new Segment(x, y));
+        segments.add(new SnakeSegment(x, y));
         positions.add(new Integer[]{x, y});
-        food = new Food(WIDTH, HEIGHT, SEGMENTWIDTH, SEGMENTHEIGHT);
+        food = new Food(WIDTH, HEIGHT, SEGMENTWIDTH, SEGMENTHEIGHT, segments);
     }
 
     /**
@@ -171,7 +171,7 @@ public class Snake {
     public void move() {
 
         // Move the head
-        Segment head = segments.get(0);
+        SnakeSegment head = segments.get(0);
         int newX = head.getX() + xVel;
         int newY = head.getY() + yVel;
         head.move(newX, newY);
@@ -200,7 +200,7 @@ public class Snake {
      * Adds a new segment to the snake at the back
      */
     private void addSegment() {
-        segments.add(new Segment(positions.get(positions.size() - 1)));
+        segments.add(new SnakeSegment(positions.get(positions.size() - 1)));
     }
 
     /**
@@ -208,7 +208,7 @@ public class Snake {
      */
     public void eat() {
         hasEaten = true;
-        food.generateNewFood();
+        food.generateNewFood(segments);
     }
 
     /**

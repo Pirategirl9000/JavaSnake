@@ -1,11 +1,12 @@
 package Game.Snake;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Holds information regarding the food that the snake eats to grow
  */
-public class Food {
+public class Food extends Segment {
     /**
      * Stores the x and y coordinates of the food
      */
@@ -36,20 +37,14 @@ public class Food {
      */
     private final Random rand = new Random();
 
-    public Food(int displayWidth, int displayHeight, int foodWidth, int foodHeight) {
+    public Food(int displayWidth, int displayHeight, int foodWidth, int foodHeight, ArrayList<SnakeSegment> segments) {
         rand.setSeed(System.currentTimeMillis());  // Generate seed based on current time
         DISPLAYWIDTH = displayWidth;
         DISPLAYHEIGHT = displayHeight;
         FOODWIDTH = foodWidth;
         FOODHEIGHT = foodHeight;
-        generateNewFood();
+        generateNewFood(segments);
     }
-
-    /**
-     * Returns the location of the food as an array
-     * @return [x, y]
-     */
-    public int[] getLocation() { return location; }
 
     /**
      * Returns the x position of the food
@@ -78,15 +73,31 @@ public class Food {
     /**
      * Spawns a new food square at a random location
      */
-    protected void generateNewFood() {
+    protected void generateNewFood(ArrayList<SnakeSegment> segments) {
         int xRange = DISPLAYWIDTH / FOODWIDTH;  // We do it this way to prevent any need for rounding and grant an equal chance for every square to be selected
         int yRange = DISPLAYHEIGHT / FOODHEIGHT;
 
-        int foodX = rand.nextInt(xRange);
-        int foodY = rand.nextInt(yRange);
+        int[] foodPos;
 
-        location[0] = foodX * FOODWIDTH;
-        location[1] = foodY * FOODHEIGHT;
+        do {  // RARE SIGHTING, A DO WHILE STATEMENT!!!
+            foodPos = new int[] {rand.nextInt(xRange), rand.nextInt(yRange)};
+            foodPos[0] *= FOODWIDTH;
+            foodPos[1] *= FOODHEIGHT;
+        } while (!isOverlappingSnake(segments, new SnakeSegment(foodPos[0], foodPos[1])));
+
+        location[0] = foodPos[0];
+        location[1] = foodPos[1];
+    }
+
+    private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, SnakeSegment food) {
+        //noinspection ForLoopReplaceableByForEach
+        for (int i = 0; i < segments.size(); i++) {
+            if (segments.get(i).equals(food)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

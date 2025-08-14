@@ -121,7 +121,7 @@ public class GameController extends JPanel implements Runnable {
 
         // Draw the snake
         for (int i = 0; i < snake.segments.size(); i++) {
-            Segment seg = snake.segments.get(i);
+            SnakeSegment seg = snake.segments.get(i);
             g.fillRect(seg.getX(), seg.getY(), WIDTH, HEIGHT);
         }
 
