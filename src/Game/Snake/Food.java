@@ -9,7 +9,7 @@ public class Food {
     /**
      * Stores the x and y coordinates of the food
      */
-    private int[] location = new int[2];
+    private final int[] location = new int[2];
 
     /**
      * Width of the game area, used for generating location of food
