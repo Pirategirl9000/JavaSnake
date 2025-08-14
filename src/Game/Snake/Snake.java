@@ -188,23 +188,24 @@ public class Snake {
      * @throws IllegalArgumentException if direction is invalid
      */
     public void changeDirection(String direction) throws IllegalArgumentException {
-        boolean isOneSegment = segments.size() == 1;
+        boolean isOneSegment = (segments.size() == 1);
+        System.out.println(isOneSegment);
 
         switch (direction.toLowerCase()) {
             case "up":
                 xVel = 0;
-                yVel = (isOneSegment || yVel != 1) ? -SPEED : yVel;  // If snake is 1 segment long, or it isn't facing down then it can go up
+                yVel = (isOneSegment || yVel != SPEED) ? -SPEED : yVel;  // If snake is 1 segment long, or it isn't facing down then it can go up
                 break;
             case "down":
                 xVel = 0;
-                yVel = (isOneSegment || yVel != -1) ? SPEED : yVel;  // If snake is 1 segment long, or it isn't facing up then it can go down
+                yVel = (isOneSegment || yVel != -SPEED) ? SPEED : yVel;  // If snake is 1 segment long, or it isn't facing up then it can go down
                 break;
             case "left":
-                xVel = (isOneSegment || xVel != 1) ? -SPEED : xVel;  // If snake is 1 segment long, or it isn't facing right then it can go left
+                xVel = (isOneSegment || xVel != SPEED) ? -SPEED : xVel;  // If snake is 1 segment long, or it isn't facing right then it can go left
                 yVel = 0;
                 break;
             case "right":
-                xVel = (isOneSegment || xVel != -1) ? SPEED : xVel;  // If snake is 1 segment long, or it isn't facing left then it can go right
+                xVel = (isOneSegment || xVel != -SPEED) ? SPEED : xVel;  // If snake is 1 segment long, or it isn't facing left then it can go right
                 yVel = 0;
                 break;
             default:
