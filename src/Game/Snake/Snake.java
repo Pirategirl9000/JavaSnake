@@ -71,12 +71,12 @@ public class Snake {
     /**
      * Width of the game area
      */
-    private int WIDTH;
+    private final int WIDTH;
 
     /**
      * Height of the game area
      */
-    private int HEIGHT;
+    private final int HEIGHT;
 
     /**
      * Creates a new snake with a set speed, width, height, and head position

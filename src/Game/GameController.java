@@ -30,7 +30,14 @@ public class GameController extends JPanel implements Runnable {
      */
     private Thread gameThread;
 
+    /**
+     * Width of the game context
+     */
     private final int WIDTH;
+
+    /**
+     * Width of the game context
+     */
     private final int HEIGHT;
 
     /**
@@ -41,13 +48,13 @@ public class GameController extends JPanel implements Runnable {
         this.setSize(width, height);
         WIDTH = width;
         HEIGHT = height;
-        snake = new Snake(20, 20, 20, 40, 40);
+        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
         startLoop();
     }
 
 //    public void reset() {
 //        killThread();
-//        snake = new Snake(20, 20, 20, 40, 40);
+//        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
 //        isAlive = true;
 //        startLoop();
 //    }
