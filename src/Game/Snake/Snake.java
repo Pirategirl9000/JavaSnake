@@ -82,6 +82,11 @@ public class Snake {
     private final int HEIGHT;
 
     /**
+     * Stores information regarding the food
+     */
+    private final Food food;
+
+    /**
      * Creates a new snake with a set speed, width, height, and head position
      * @param width width of the game area
      * @param height height of the game area
@@ -95,10 +100,11 @@ public class Snake {
         WIDTH = width;
         HEIGHT = height;
         SPEED = speed;
-        segments.add(new Segment(x, y));
-        positions.add(new Integer[]{x, y});
         SEGMENTWIDTH = segmentWidth;
         SEGMENTHEIGHT = segmentHeight;
+        segments.add(new Segment(x, y));
+        positions.add(new Integer[]{x, y});
+        food = new Food(WIDTH, HEIGHT, SEGMENTWIDTH, SEGMENTHEIGHT);
     }
 
     /**
@@ -110,13 +116,7 @@ public class Snake {
      * @param segmentHeight height of segment in pixels
      */
     public Snake(int width, int height, int speed, int segmentWidth, int segmentHeight) {
-        WIDTH = width;
-        HEIGHT = height;
-        SPEED = speed;
-        segments.add(new Segment(40, 40));
-        positions.add(new Integer[] {40, 40});
-        SEGMENTWIDTH = segmentWidth;
-        SEGMENTHEIGHT = segmentHeight;
+        this(width, height, speed, segmentWidth, segmentHeight, 40, 40);
     }
 
     /**
@@ -125,13 +125,7 @@ public class Snake {
      * @param height height of the game area
      */
     public Snake(int width, int height) {
-        WIDTH = width;
-        HEIGHT = height;
-        SPEED = 20;
-        segments.add(new Segment(40, 40));
-        positions.add(new Integer[] {40, 40});
-        SEGMENTWIDTH = 20;
-        SEGMENTHEIGHT = 20;
+        this(width, height, 20, 20, 20, 40, 40);
     }
 
     /**
@@ -192,10 +186,11 @@ public class Snake {
     }
 
     /**
-     * Sets the flag for hasEaten to true, the snake will then be extended next tick
+     * Sets the flag for hasEaten to true and generates a new piece of food, the snake will then be extended next tick
      */
     public void eat() {
         hasEaten = true;
+        food.generateNewFood();
     }
 
     /**

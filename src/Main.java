@@ -13,6 +13,7 @@ public class Main {
 
         display.debugCommand("FORCEEAT");
 
+        //TODO Make sure that Display.width / SPEED == 0 && Display.height / SPEED == 0
 
     }
 }
