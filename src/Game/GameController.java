@@ -1,7 +1,7 @@
 package Game;
 
 import Game.Snake.*;
-import javax.swing.*;
+import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.lang.Runnable;
