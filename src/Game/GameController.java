@@ -34,7 +34,7 @@ public class GameController extends JPanel implements Runnable {
      * Creates a gameController to handle the logic and graphics of the game
      */
     public GameController() {
-        this.setBackground(Color.DARK_GRAY);
+        this.setBackground(Color.BLACK);
         snake = new Snake(20, 20, 20, 40, 40);
         startLoop();
     }
