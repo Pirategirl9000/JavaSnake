@@ -75,14 +75,14 @@ public class Food extends Segment {
             foodPos[0] *= FOODWIDTH;
             foodPos[1] *= FOODHEIGHT;
             this.setLocation(foodPos[0], foodPos[1]);
-        } while (isOverlappingSnake(segments, this));  // God, I'm such a genius
+        } while (isOverlappingSnake(segments));  // God, I'm such a genius
     }
 
-    private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, Food food) {
+    private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments) {
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < segments.size(); i++) {
             //noinspection EqualsBetweenInconvertibleTypes
-            if (((segments.get(i))).equals(food)) {  // Checks if they are at the same coordinates
+            if (((segments.get(i))).equals(this)) {  // Checks if they are at the same coordinates
                 return true;
             }
         }

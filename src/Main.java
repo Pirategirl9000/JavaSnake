@@ -23,7 +23,32 @@ public class Main {
 
         Display display = new Display(GAMEWIDTH, GAMEHEIGHT, SNAKESPEED, TICKSPERSECOND);  // Boot up the game
 
-        //TODO Make sure that Display.width / SPEED == 0 && Display.height / SPEED == 0
-
     }
 }
+
+
+
+/*
+IDEAS:
+if (GAMEWIDTH % SNAKESPEED > 0) {
+    GAMEWIDTH -= GAMEWIDTH % SNAKESPEED;
+}
+
+CONFIG FILE
+
+enum GameState { RUNNING, DEAD, PAUSED }
+private GameState state = GameState.RUNNING;
+
+Add a shutdown hook for safety
+
+Override hashcode
+
+public SnakeSegment getHead() {}
+
+Score System
+
+
+
+
+
+ */

@@ -49,6 +49,7 @@ public class GameController extends JPanel implements Runnable {
      */
     public GameController(int width, int height, int speed, int tps) {
         this.setBackground(Color.BLACK);
+        this.setOpaque(true);
         this.setPreferredSize(new Dimension(width, height));
         TPS = tps;
         frameDuration = 1000L / TPS;
@@ -60,7 +61,7 @@ public class GameController extends JPanel implements Runnable {
 
     public void reset() {
         killThread();
-        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
+        snake = new Snake(WIDTH, HEIGHT, snake.getSpeed(), snake.getSegmentWidth(), snake.getSegmentHeight(), 40, 40);
         startLoop();
     }
 

@@ -1,8 +1,8 @@
 package Game;
 
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -24,7 +24,6 @@ public class Display extends JFrame {
      */
     public Display(int width, int height, int speed, int tps) {
         game = new GameController(width, height, speed, tps);
-        this.setLayout(new FlowLayout());
         this.setTitle("Snake Game");
         this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
@@ -73,9 +72,41 @@ public class Display extends JFrame {
             }
         });
 
-        this.add(game);  // Add the game to the display
+
+        /// The following segment was generated with AI since I suck at formatting
+
+        // Create a wrapper around the game with a visible border
+        JPanel gameWrapper = new JPanel(new BorderLayout());
+        gameWrapper.setBackground(Color.DARK_GRAY);
+        gameWrapper.setBorder(BorderFactory.createLineBorder(Color.GRAY, 4)); // Optional visual border
+        gameWrapper.add(game, BorderLayout.CENTER);
+
+        // Create a fullscreen panel that centers the gameWrapper
+        JPanel fullscreenPanel = new JPanel(new GridBagLayout());
+        fullscreenPanel.setBackground(Color.DARK_GRAY);
+        fullscreenPanel.add(gameWrapper); // Centered by default
+
+        // Add title label separately at the top
+        JLabel title = new JLabel("Violet's Snake Game");
+        title.setForeground(new Color(131, 6, 131));
+        title.setFont(new Font("SansSerif", Font.BOLD, 24));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setPreferredSize(new Dimension(1920, 40));
+        title.setBackground(Color.DARK_GRAY);
+        title.setOpaque(true);
+
+        // Use BorderLayout to stack title and game
+        JPanel rootPanel = new JPanel(new BorderLayout());
+        rootPanel.setBackground(Color.DARK_GRAY);
+        rootPanel.add(title, BorderLayout.NORTH);
+        rootPanel.add(fullscreenPanel, BorderLayout.CENTER);
+
+        this.setContentPane(rootPanel);
+        /// END OF AI GENERATED FORMATTING
+
         this.pack();
         this.setVisible(true);
+
     }
 
     /**

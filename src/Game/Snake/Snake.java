@@ -147,6 +147,12 @@ public class Snake {
     public Color getFoodColor() { return food.getColor(); }
 
     /**
+     * Returns the snakes speed
+     * @return speed
+     */
+    public int getSpeed() { return SPEED; }
+
+    /**
      * Returns whether the snake is still alive
      * @return boolean
      */
@@ -173,8 +179,9 @@ public class Snake {
 
     /**
      * Moves the snake and it's segments forward one game tick in accordance with its current direction
+     * @throws IndexOutOfBoundsException when resetting mid-movement
      */
-    public void move() {
+    public void move() throws IndexOutOfBoundsException {
 
         // Move the head
         SnakeSegment head = segments.get(0);
