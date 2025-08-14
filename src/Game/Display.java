@@ -7,9 +7,20 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Display is a JFrame extended class that serves as the window for the program. Stores the GameController.
+ */
 public class Display extends JFrame {
+    /**
+     * GameController that handles the logic and graphics of the game
+     */
     GameController game;
 
+    /**
+     * Creates a new display window with the Snake game
+     * @param width width of the display and game
+     * @param height height of the display and game
+     */
     public Display(int width, int height) {
         game = new GameController(width, height);
         this.setTitle("Snake Game");
@@ -65,7 +76,7 @@ public class Display extends JFrame {
     }
 
     /**
-     *
+     * Toggles fullscreen for the JFrame
      */
     private void toggleFullscreen() {
         int state = this.getExtendedState();  // Get the current JFrame's state

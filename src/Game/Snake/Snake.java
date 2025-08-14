@@ -3,6 +3,9 @@ package Game.Snake;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * Represents the Snake in its entirety. Holds logic regarding how to move, eat, grow, and die.
+ */
 public class Snake {
     /**
      * Color of the Snake

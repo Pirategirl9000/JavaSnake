@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.lang.Runnable;
 import java.awt.event.KeyEvent;
 
+/**
+ * The GameController serves as the canvas and logic controller of the game. Handles features like the basic gameLoop, clock, input parsing, graphics, and basic logic
+ */
 public class GameController extends JPanel implements Runnable {
     /**
      * Snake object used for storing info about the snake's position and segments. Also handles the movement of the snake
