@@ -209,6 +209,9 @@ public class Snake {
         segments.add(new SnakeSegment(positions.get(positions.size() - 1)));
     }
 
+    /**
+     * Checks for collision of snake with objects and handles them accordingly
+     */
     private void collisionCheck() {
         SnakeSegment head = segments.get(0);
 
@@ -223,6 +226,11 @@ public class Snake {
             if (head.equals(segments.get(i))) {
                 killSnake();
             }
+        }
+
+        // Out of Bounds Collision
+        if (head.getX() > WIDTH || head.getX() < 0 || head.getY() > HEIGHT || head.getY() < 0) {
+            killSnake();
         }
 
     }
