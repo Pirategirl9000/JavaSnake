@@ -146,6 +146,24 @@ public class Snake {
      */
     public boolean getAlive() { return isAlive; }
 
+    /**
+     * Returns the food's position as an array
+     * @return [x, y]
+     */
+    public int[] getFoodPosition() { return food.getLocation(); }
+
+    /**
+     * Returns the food's x-position
+     * @return x
+     */
+    public int getFoodX() { return food.getX(); }
+
+    /**
+     * Returns the food's y-position
+     * @return y
+     */
+    public int getFoodY() { return food.getY(); }
+
 
     /**
      * Moves the snake and it's segments forward one game tick in accordance with its current direction

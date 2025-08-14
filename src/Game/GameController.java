@@ -124,6 +124,9 @@ public class GameController extends JPanel implements Runnable {
             Segment seg = snake.segments.get(i);
             g.fillRect(seg.getX(), seg.getY(), WIDTH, HEIGHT);
         }
+
+        // Draw the food
+        g.fillRect(snake.getFoodX(), snake.getFoodY(), snake.getSegmentWidth(), snake.getSegmentHeight());  // Height/width of snake are always the same as food
     }
 
     /**
