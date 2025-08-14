@@ -26,6 +26,24 @@ public class Segment {
     }
 
     /**
+     * Creates a new segment with the specified x and y coordinates
+     * @param coords [x, y] position of the segment
+     */
+    public Segment(Integer[] coords) {
+        this.x = coords[0];
+        this.y = coords[1];
+    }
+
+    /**
+     * Creates a new segment with the specified x and y coordinates
+     * @param coords [x, y] position of the segment
+     */
+    public Segment(int[] coords) {
+        this.x = coords[0];
+        this.y = coords[1];
+    }
+
+    /**
      * Gets the x-coordinate of the segment
      * @return x-position of the segment
      */
@@ -45,6 +63,15 @@ public class Segment {
     protected void move(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * Moves the segment to the specified position
+     * @param coords Integer array storing the new [x, y] coordinates of the segment
+     */
+    protected void move(Integer[] coords) {
+        this.x = coords[0];
+        this.y = coords[1];
     }
 
     /**

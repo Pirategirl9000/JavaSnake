@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.lang.Runnable;
+import java.awt.event.KeyEvent;
 
 public class GameController extends JPanel implements Runnable {
     /**
@@ -71,6 +72,27 @@ public class GameController extends JPanel implements Runnable {
     protected void killThread() {
         isAlive = false;
         gameThread.interrupt();  // Stops the gameThread where it is, so if it's sleeping we stop that
+    }
+
+    /**
+     * Parses KeyEvents to directional input for the game
+     * @param e KeyEvent object, accepted keys: [w, a, s, d]
+     */
+    protected void parseInput(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case 'w':
+                snake.changeDirection("up");
+                break;
+            case 's':
+                snake.changeDirection("down");
+                break;
+            case 'a':
+                snake.changeDirection("left");
+                break;
+            case 'd':
+                snake.changeDirection("right");
+                break;
+        }
     }
 
     /**

@@ -52,6 +52,11 @@ public class Snake {
     public ArrayList<Integer[]> positions = new ArrayList<>();
 
     /**
+     * Stores whether the snake has eaten which is then used to increase the size of the snake on the next tick
+     */
+    private boolean hasEaten = false;
+
+    /**
      * Creates a new snake with a set speed, width, height, and head position
      * @param speed speed in pixels/tick
      * @param segmentWidth width of segment in pixels
@@ -108,20 +113,41 @@ public class Snake {
      * Moves the snake and it's segments forward one game tick in accordance with its current direction
      */
     public void move() {
+
+        // Move the head
         Segment head = segments.get(0);
         int newX = head.getX() + xVel;
         int newY = head.getY() + yVel;
         head.move(newX, newY);
 
+        // Move every segments
         for (int i = 1; i < segments.size(); i++) {
-            Integer[] newPosition = positions.get(i-1);
-            segments.get(i).move(newPosition[0], newPosition[1]);
+            segments.get(i).move(positions.get(i-1));
         }
 
         // Collision logic should go here
 
-        positions.add(new Integer[]{newX, newY});  // Add the new head position to the list of positions
-        positions.remove(0);
+
+        // Here we should add any new
+        if (hasEaten) {
+            hasEaten = false;
+            addSegment();
+        } else {
+            positions.remove(positions.size()-1);  // Get rid of the last element
+        }
+
+        positions.add(0, new Integer[]{newX, newY});  // Add the new head to the positional array
+    }
+
+    /**
+     * Adds a new segment to the snake at the back
+     */
+    private void addSegment() {
+        segments.add(new Segment(positions.get(positions.size() - 1)));
+    }
+
+    public void eat() {
+        hasEaten = true;
     }
 
 
