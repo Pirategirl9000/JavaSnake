@@ -11,6 +11,7 @@ public class GameController extends JPanel implements Runnable {
     /**
      * Snake object used for storing info about the snake's position and segments. Also handles the movement of the snake
      */
+    @SuppressWarnings("FieldMayBeFinal")  // I know what I'm doing Mr. Compiler
     private Snake snake;
 
     /**
@@ -26,6 +27,7 @@ public class GameController extends JPanel implements Runnable {
     /**
      * Time (ms) of a single frame, determined by the TPS
      */
+    @SuppressWarnings("FieldCanBeLocal")  // Have you no faith in me IntelliJ?
     private final long frameDuration = 1000 / TPS;
 
     /**
@@ -131,6 +133,7 @@ public class GameController extends JPanel implements Runnable {
             // has passed for us to execute the next game tick
             if (elapsedTime < frameDuration) {
                 try {
+                    //noinspection BusyWait
                     Thread.sleep(frameDuration-elapsedTime);  // Wait till we should generate the next frame
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();  // Reset the interrupt flag on the thread - Good practice habit

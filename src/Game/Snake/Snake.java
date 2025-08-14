@@ -17,11 +17,13 @@ public class Snake {
     /**
      * Height of a segment in pixels, should align on a 1920x1080 display
      */
+    @SuppressWarnings("SpellCheckingInspection")  // Shhhhhhh
     private final int SEGMENTWIDTH;
 
     /**
      * Height of a segment in pixels, should align on a 1920x1080 display
      */
+    @SuppressWarnings("SpellCheckingInspection")  // I said SHHHHHHHH!
     private final int SEGMENTHEIGHT;
 
     /**
