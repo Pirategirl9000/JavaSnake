@@ -6,10 +6,20 @@ package Game.Snake;
 public abstract class Segment {
     protected final int[] location = new int[2];
 
+    /**
+     * Creates a new Segment with setLocation(x, y)
+     * @param x x position of Segment
+     * @param y y position of Segment
+     */
     public Segment(int x, int y) {
         setLocation(x, y);
     }
 
+    /**
+     * Sets the location of the segment
+     * @param x x position of Segment
+     * @param y y position of Segment
+     */
     public void setLocation(int x, int y) {
         location[0] = x;
         location[1] = y;
