@@ -140,6 +140,8 @@ public class Snake {
      */
     public int getSegmentWidth() { return SEGMENTWIDTH; }
 
+    public Color getFoodColor() { return food.getColor(); }
+
     /**
      * Returns whether the snake is still alive
      * @return boolean

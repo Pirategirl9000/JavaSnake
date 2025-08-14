@@ -2,15 +2,14 @@ package Game.Snake;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.Color;
 
 /**
  * Holds information regarding the food that the snake eats to grow
  */
 public class Food extends Segment {
-    /**
-     * Stores the x and y coordinates of the food
-     */
-    private final int[] location = new int[2];
+
+    public Color color;
 
     /**
      * Width of the game area, used for generating location of food
@@ -39,24 +38,13 @@ public class Food extends Segment {
 
     public Food(int displayWidth, int displayHeight, int foodWidth, int foodHeight, ArrayList<SnakeSegment> segments) {
         rand.setSeed(System.currentTimeMillis());  // Generate seed based on current time
+        color = Color.GREEN;
         DISPLAYWIDTH = displayWidth;
         DISPLAYHEIGHT = displayHeight;
         FOODWIDTH = foodWidth;
         FOODHEIGHT = foodHeight;
         generateNewFood(segments);
     }
-
-    /**
-     * Returns the x position of the food
-     * @return x-position
-     */
-    public int getX() { return location[0]; }
-
-    /**
-     * Returns the y position of the food
-     * @return y-position
-     */
-    public int getY() { return location[1]; }
 
     /**
      * Returns the width of a food object
@@ -69,6 +57,8 @@ public class Food extends Segment {
      * @return height
      */
     public int getFoodHeight() { return FOODHEIGHT; }
+
+    public Color getColor() { return color; }
 
     /**
      * Spawns a new food square at a random location
@@ -85,8 +75,7 @@ public class Food extends Segment {
             foodPos[1] *= FOODHEIGHT;
         } while (!isOverlappingSnake(segments, new SnakeSegment(foodPos[0], foodPos[1])));
 
-        location[0] = foodPos[0];
-        location[1] = foodPos[1];
+        super.setLocation(foodPos[0], foodPos[1]);
     }
 
     private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, SnakeSegment food) {
@@ -105,6 +94,10 @@ public class Food extends Segment {
      */
     public void generateNewSeed() { rand.setSeed(System.currentTimeMillis()); }
 
+    @Override
+    public String toString() {
+        return "Food [x=" + location[0] + ", y=" + location[1] + "]";
+    }
 
 
 }

@@ -3,9 +3,7 @@ package Game.Snake;
 /**
  * Defines a single segment of the snake
  */
-public class SnakeSegment {
-    private int[] location;
-
+public class SnakeSegment extends Segment {
 
     /**
      * Creates a new segment with the specified x and y coordinates
@@ -13,7 +11,7 @@ public class SnakeSegment {
      * @param y y-position of the segment
      */
     public SnakeSegment(int x, int y) {
-        location = new int[] {x, y};
+        super.setLocation(x,y);
     }
 
     /**
@@ -29,33 +27,21 @@ public class SnakeSegment {
     public SnakeSegment(int[] coords) { this(coords[0], coords[1]); }
 
     /**
-     * Gets the x-coordinate of the segment
-     * @return x-position of the segment
-     */
-    public int getX() { return location[0]; }
-
-    /**
-     * Gets the y-coordinate of the segment
-     * @return y-position of the segment
-     */
-    public int getY() { return location[1]; }
-
-    public int[] getCoords() { return location;}
-
-    /**
      * Moves the segment to the specified position
      * @param x x-position of the segment
      * @param y y-position of the segment
      */
     protected void move(int x, int y) {
-        location = new int[] {x, y};
+        setLocation(x,y);
     }
 
     /**
      * Moves the segment to the specified position
      * @param coords Integer array storing the new [x, y] coordinates of the segment
      */
-    protected void move(Integer[] coords) { move(coords[0], coords[1]); }
+    protected void move(Integer[] coords) {
+        move(coords[0], coords[1]);
+    }
 
     /**
      * Gives the x and y position of the segment as a string
