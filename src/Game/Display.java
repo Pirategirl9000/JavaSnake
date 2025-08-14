@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -21,12 +22,13 @@ public class Display extends JFrame {
      * @param width width of the display and game
      * @param height height of the display and game
      */
-    public Display(int width, int height) {
-        game = new GameController(width, height);
+    public Display(int width, int height, int speed, int tps) {
+        game = new GameController(width, height, speed, tps);
+        this.setLayout(new FlowLayout());
         this.setTitle("Snake Game");
-        this.setSize(width, height);
+        this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
-        this.setBackground(Color.BLACK);
+        this.getContentPane().setBackground(Color.DARK_GRAY);
 
         // Because of the Game thread we need to kill the window in our own way rather than
         // using JFrame.EXIT_ON_CLOSE
@@ -72,6 +74,7 @@ public class Display extends JFrame {
         });
 
         this.add(game);  // Add the game to the display
+        this.pack();
         this.setVisible(true);
     }
 
@@ -91,6 +94,7 @@ public class Display extends JFrame {
             this.setUndecorated(false);
         }
 
+        this.pack();
         this.setVisible(true);  // Show it again
     }
 

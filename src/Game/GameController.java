@@ -2,8 +2,7 @@ package Game;
 
 import Game.Snake.*;
 import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.Color;
+import java.awt.*;
 import java.lang.Runnable;
 import java.awt.event.KeyEvent;
 
@@ -20,13 +19,13 @@ public class GameController extends JPanel implements Runnable {
     /**
      * Ticks Per Second, how many game ticks are executed each second. Higher tick speed means faster gameplay and frame rate
      */
-    private final int TPS = 20;
+    private final int TPS;
 
     /**
      * Time (ms) of a single frame, determined by the TPS
      */
     @SuppressWarnings("FieldCanBeLocal")  // Have you no faith in me IntelliJ?
-    private final long frameDuration = 1000 / TPS;
+    private final long frameDuration;
 
     /**
      * The thread the game's clock performs on
@@ -48,21 +47,22 @@ public class GameController extends JPanel implements Runnable {
     /**
      * Creates a gameController to handle the logic and graphics of the game
      */
-    public GameController(int width, int height) {
+    public GameController(int width, int height, int speed, int tps) {
         this.setBackground(Color.BLACK);
-        this.setSize(width, height);
+        this.setPreferredSize(new Dimension(width, height));
+        TPS = tps;
+        frameDuration = 1000L / TPS;
         WIDTH = width;
         HEIGHT = height;
-        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
+        snake = new Snake(WIDTH, HEIGHT, speed, speed, speed, 40, 40);  // SegmentHeight and width should be equal to speed to prevent wierd overlapping of sprites
         startLoop();
     }
 
-//    public void reset() {
-//        killThread();
-//        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
-//        isAlive = true;
-//        startLoop();
-//    }
+    public void reset() {
+        killThread();
+        snake = new Snake(WIDTH, HEIGHT, 20, 20, 20, 40, 40);
+        startLoop();
+    }
 
     /**
      * Starts the game's loop on a new thread
@@ -105,6 +105,10 @@ public class GameController extends JPanel implements Runnable {
                 break;
             case 'd':
                 snake.changeDirection("right");
+                break;
+            case 'r':
+                if (snake.getAlive()) { return; }
+                reset();
                 break;
         }
     }
