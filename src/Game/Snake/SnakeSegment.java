@@ -52,14 +52,5 @@ public class SnakeSegment extends Segment {
         return "Segment [x=" + location[0] + ", y=" + location[1] + "]";
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof SnakeSegment) {
-            SnakeSegment item = (SnakeSegment) obj;
 
-            return (this.getX() == item.getX()) && (this.getY() == item.getY());  // Checks if they have overlapping x and y coordinates
-        }
-
-        return false;
-    }
 }

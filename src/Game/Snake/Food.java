@@ -73,15 +73,15 @@ public class Food extends Segment {
             foodPos = new int[] {rand.nextInt(xRange), rand.nextInt(yRange)};
             foodPos[0] *= FOODWIDTH;
             foodPos[1] *= FOODHEIGHT;
-        } while (!isOverlappingSnake(segments, new SnakeSegment(foodPos[0], foodPos[1])));
+        } while (isOverlappingSnake(segments, this));  // Pass a plain Segment object since Food and SnakeSegment are larger objects so this will initialize faster
 
         super.setLocation(foodPos[0], foodPos[1]);
     }
 
-    private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, SnakeSegment food) {
+    private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, Food food) {
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < segments.size(); i++) {
-            if (!segments.get(i).equals(food)) {
+            if (((segments.get(i))).equals(food)) {
                 return true;
             }
         }
