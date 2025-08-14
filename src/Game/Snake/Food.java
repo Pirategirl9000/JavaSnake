@@ -78,7 +78,14 @@ public class Food {
      * Spawns a new food square at a random location
      */
     public void generateNewFood() {
+        int xRange = DISPLAYWIDTH / FOODWIDTH;  // We do it this way to prevent any need for rounding and grant an equal chance for every square to be selected
+        int yRange = DISPLAYHEIGHT / FOODHEIGHT;
 
+        int foodX = rand.nextInt(xRange);
+        int foodY = rand.nextInt(yRange);
+
+        location[0] = foodX * FOODWIDTH;
+        location[1] = foodY * FOODHEIGHT;
     }
 
     /**
