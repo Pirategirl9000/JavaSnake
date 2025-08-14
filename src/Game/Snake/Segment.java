@@ -6,12 +6,8 @@ package Game.Snake;
 public abstract class Segment {
     protected final int[] location = new int[2];
 
-    protected Segment(int x, int y) {
-        setLocation(x, y);  // For comparison of food to SnakeSegments to see if it intersects
-    }
-
-    protected Segment() {
-        return;  // For creation of SnakeSegment or Food objects, doesn't have any construction.
+    public Segment(int x, int y) {
+        setLocation(x, y);
     }
 
     public void setLocation(int x, int y) {
@@ -52,6 +48,11 @@ public abstract class Segment {
         return "Segment [x=" + location[0] + ", y=" + location[1] + "]";
     }
 
+    /**
+     * Checks to see if two segment objects are overlapping
+     * @param obj the object to compare it to
+     * @return overlapping?
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Segment) {

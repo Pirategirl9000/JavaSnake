@@ -11,7 +11,7 @@ public class SnakeSegment extends Segment {
      * @param y y-position of the segment
      */
     public SnakeSegment(int x, int y) {
-        super.setLocation(x,y);
+        super(x, y);
     }
 
     /**

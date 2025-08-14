@@ -37,6 +37,7 @@ public class Food extends Segment {
     private final Random rand = new Random();
 
     public Food(int displayWidth, int displayHeight, int foodWidth, int foodHeight, ArrayList<SnakeSegment> segments) {
+        super(80, 80); // Default position to prevent null pointers
         rand.setSeed(System.currentTimeMillis());  // Generate seed based on current time
         color = Color.GREEN;
         DISPLAYWIDTH = displayWidth;
@@ -73,15 +74,15 @@ public class Food extends Segment {
             foodPos = new int[] {rand.nextInt(xRange), rand.nextInt(yRange)};
             foodPos[0] *= FOODWIDTH;
             foodPos[1] *= FOODHEIGHT;
-        } while (isOverlappingSnake(segments, this));  // Pass a plain Segment object since Food and SnakeSegment are larger objects so this will initialize faster
-
-        super.setLocation(foodPos[0], foodPos[1]);
+            this.setLocation(foodPos[0], foodPos[1]);
+        } while (isOverlappingSnake(segments, this));  // God, I'm such a genius
     }
 
     private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, Food food) {
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < segments.size(); i++) {
-            if (((segments.get(i))).equals(food)) {
+            //noinspection EqualsBetweenInconvertibleTypes
+            if (((segments.get(i))).equals(food)) {  // Checks if they are at the same coordinates
                 return true;
             }
         }

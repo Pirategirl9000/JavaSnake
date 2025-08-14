@@ -140,6 +140,10 @@ public class Snake {
      */
     public int getSegmentWidth() { return SEGMENTWIDTH; }
 
+    /**
+     * Return's the food's color
+     * @return color of the food
+     */
     public Color getFoodColor() { return food.getColor(); }
 
     /**
@@ -184,6 +188,11 @@ public class Snake {
         }
 
         // Collision logic should go here
+
+        // Food collision
+        if (segments.get(0).equals(food)) {
+            eat();
+        }
 
 
         // Here we should add any new
