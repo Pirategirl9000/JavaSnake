@@ -13,7 +13,7 @@ public class Display extends JFrame {
     public Display(int width, int height) {
         game = new GameController(width, height);
         this.setTitle("Snake Game");
-        this.setSize(1920, 1080);
+        this.setSize(width, height);
         this.setLocationRelativeTo(null);
         this.setBackground(Color.BLACK);
 

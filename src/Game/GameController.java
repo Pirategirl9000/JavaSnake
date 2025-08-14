@@ -38,6 +38,7 @@ public class GameController extends JPanel implements Runnable {
      */
     public GameController(int width, int height) {
         this.setBackground(Color.BLACK);
+        this.setSize(width, height);
         WIDTH = width;
         HEIGHT = height;
         snake = new Snake(20, 20, 20, 40, 40);
