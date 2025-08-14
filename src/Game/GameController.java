@@ -15,11 +15,6 @@ public class GameController extends JPanel implements Runnable {
     private Snake snake;
 
     /**
-     * Whether the player is still alive, used for stopping the gameLoop thread
-     */
-    private boolean isAlive;
-
-    /**
      * Ticks Per Second, how many game ticks are executed each second. Higher tick speed means faster gameplay and frame rate
      */
     private final int TPS = 20;
@@ -41,7 +36,6 @@ public class GameController extends JPanel implements Runnable {
     public GameController() {
         this.setBackground(Color.DARK_GRAY);
         snake = new Snake(20, 20, 20, 40, 40);
-        isAlive = true;
         startLoop();
     }
 
@@ -72,7 +66,7 @@ public class GameController extends JPanel implements Runnable {
      * Kills the game's thread safely for termination of game
      */
     protected void killThread() {
-        isAlive = false;
+        snake.killSnake();
         gameThread.interrupt();  // Stops the gameThread where it is, so if it's sleeping we stop that
     }
 
@@ -121,7 +115,7 @@ public class GameController extends JPanel implements Runnable {
      */
     @Override
     public void run() {
-        while (isAlive) {
+        while (snake.getAlive()) {
             long startTime = System.currentTimeMillis();  // Get the start time
 
             // Execute Game logic
@@ -139,6 +133,23 @@ public class GameController extends JPanel implements Runnable {
                     Thread.currentThread().interrupt();  // Reset the interrupt flag on the thread - Good practice habit
                 }
             }
+        }
+    }
+
+    /**
+     * Runs select debug commands - Developer tool
+     * @param command command to execute
+     */
+    protected void debugCommand(String command) {
+        switch (command) {
+            //noinspection SpellCheckingInspection
+            case "FORCEEAT":
+                snake.eat();
+                break;
+            //noinspection SpellCheckingInspection
+            case "FORCEKILL":
+                snake.killSnake();
+                break;
         }
     }
 }

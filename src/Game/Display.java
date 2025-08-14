@@ -8,12 +8,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.KeyListener;
 
 public class Display extends JFrame {
+    GameController game = new GameController();
+
     public Display() {
         this.setTitle("Snake Game");
         this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
         this.setBackground(Color.DARK_GRAY);
-        GameController game = new GameController();
 
         // Because of the Game thread we need to kill the window in our own way rather than
         // using JFrame.EXIT_ON_CLOSE
@@ -51,6 +52,9 @@ public class Display extends JFrame {
              */
             @Override
             public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == 'f') {
+                    toggleFullscreen();
+                }
                 game.parseInput(e);  // Send it to the game controller for reading
             }
         });
@@ -58,4 +62,30 @@ public class Display extends JFrame {
         this.add(game);  // Add the game to the display
         this.setVisible(true);
     }
+
+    /**
+     *
+     */
+    private void toggleFullscreen() {
+        int state = this.getExtendedState();  // Get the current JFrame's state
+
+        this.dispose();  // Frame can't be displayable when manipulating these
+
+        if (state == JFrame.NORMAL) {  // Set to fullscreen
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            this.setUndecorated(true);
+        } else {  // Disable fullscreen
+            this.setExtendedState(JFrame.NORMAL);
+            this.setUndecorated(false);
+        }
+
+        this.setVisible(true);  // Show it again
+    }
+
+    /**
+     * Runs a debug command, used for dev testing
+     * @param command the command to run,
+     * @see GameController#debugCommand(String) view commands
+     */
+    public void debugCommand(String command) { game.debugCommand(command); }
 }

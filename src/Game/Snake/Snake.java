@@ -10,6 +10,11 @@ public class Snake {
     public Color color = Color.RED;
 
     /**
+     * Whether the snake is still alive, used for stopping the gameLoop thread
+     */
+    private boolean isAlive = true;
+
+    /**
      * Speed in pixels/tick of the snake
      */
     private final int SPEED;
@@ -112,6 +117,13 @@ public class Snake {
     public int getWidth() { return SEGMENTWIDTH; }
 
     /**
+     * Returns whether the snake is still alive
+     * @return boolean
+     */
+    public boolean getAlive() { return isAlive; }
+
+
+    /**
      * Moves the snake and it's segments forward one game tick in accordance with its current direction
      */
     public void move() {
@@ -148,10 +160,19 @@ public class Snake {
         segments.add(new Segment(positions.get(positions.size() - 1)));
     }
 
+    /**
+     * Sets the flag for hasEaten to true, the snake will then be extended next tick
+     */
     public void eat() {
         hasEaten = true;
     }
 
+    /**
+     * Sets the snake's isAlive status to false
+     */
+    public void killSnake() {
+        isAlive = false;
+    }
 
     /**
      * Changes the direction of the snake
