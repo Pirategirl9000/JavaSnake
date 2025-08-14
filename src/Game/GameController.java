@@ -30,11 +30,16 @@ public class GameController extends JPanel implements Runnable {
      */
     private Thread gameThread;
 
+    private final int WIDTH;
+    private final int HEIGHT;
+
     /**
      * Creates a gameController to handle the logic and graphics of the game
      */
-    public GameController() {
+    public GameController(int width, int height) {
         this.setBackground(Color.BLACK);
+        WIDTH = width;
+        HEIGHT = height;
         snake = new Snake(20, 20, 20, 40, 40);
         startLoop();
     }
@@ -100,8 +105,8 @@ public class GameController extends JPanel implements Runnable {
         super.paintComponent(g);  // Clear previous frame
 
         g.setColor(snake.color);
-        final int WIDTH = snake.getWidth();
-        final int HEIGHT = snake.getHeight();
+        final int WIDTH = snake.getSegmentWidth();
+        final int HEIGHT = snake.getSegmentHeight();
 
         // Draw the snake
         for (int i = 0; i < snake.segments.size(); i++) {

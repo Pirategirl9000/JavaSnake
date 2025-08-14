@@ -69,14 +69,28 @@ public class Snake {
     private boolean hasEaten = false;
 
     /**
+     * Width of the game area
+     */
+    private int WIDTH;
+
+    /**
+     * Height of the game area
+     */
+    private int HEIGHT;
+
+    /**
      * Creates a new snake with a set speed, width, height, and head position
+     * @param width width of the game area
+     * @param height height of the game area
      * @param speed speed in pixels/tick
      * @param segmentWidth width of segment in pixels
      * @param segmentHeight height of segment in pixels
      * @param x x-position of the head
      * @param y y-position of the head
      */
-    public Snake(int speed, int segmentWidth, int segmentHeight, int x, int y) {
+    public Snake(int width, int height, int speed, int segmentWidth, int segmentHeight, int x, int y) {
+        WIDTH = width;
+        HEIGHT = height;
         SPEED = speed;
         segments.add(new Segment(x, y));
         positions.add(new Integer[]{x, y});
@@ -86,11 +100,15 @@ public class Snake {
 
     /**
      * Creates a new snake with a set speed, width, and height with a default head position
+     * @param width width of the game area
+     * @param height height of the game area
      * @param speed speed in pixels/tick
      * @param segmentWidth width of segment in pixels
      * @param segmentHeight height of segment in pixels
      */
-    public Snake(int speed, int segmentWidth, int segmentHeight) {
+    public Snake(int width, int height, int speed, int segmentWidth, int segmentHeight) {
+        WIDTH = width;
+        HEIGHT = height;
         SPEED = speed;
         segments.add(new Segment(40, 40));
         positions.add(new Integer[] {40, 40});
@@ -100,8 +118,12 @@ public class Snake {
 
     /**
      * Creates a new snake with default speed, width, height, and head position
+     * @param width width of the game area
+     * @param height height of the game area
      */
-    public Snake() {
+    public Snake(int width, int height) {
+        WIDTH = width;
+        HEIGHT = height;
         SPEED = 20;
         segments.add(new Segment(40, 40));
         positions.add(new Integer[] {40, 40});
@@ -113,13 +135,13 @@ public class Snake {
      * Returns the height of a segment within the snake
      * @return height of segment
      */
-    public int getHeight() { return SEGMENTHEIGHT; }
+    public int getSegmentHeight() { return SEGMENTHEIGHT; }
 
     /**
      * Returns the width of a segment within the snake
      * @return width of segment
      */
-    public int getWidth() { return SEGMENTWIDTH; }
+    public int getSegmentWidth() { return SEGMENTWIDTH; }
 
     /**
      * Returns whether the snake is still alive

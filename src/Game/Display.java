@@ -8,9 +8,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.KeyListener;
 
 public class Display extends JFrame {
-    GameController game = new GameController();
+    GameController game;
 
-    public Display() {
+    public Display(int width, int height) {
+        game = new GameController(width, height);
         this.setTitle("Snake Game");
         this.setSize(1920, 1080);
         this.setLocationRelativeTo(null);
