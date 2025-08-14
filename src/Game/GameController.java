@@ -36,11 +36,13 @@ public class GameController extends JPanel implements Runnable {
     /**
      * Width of the game context
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private final int WIDTH;
 
     /**
      * Width of the game context
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private final int HEIGHT;
 
     /**
