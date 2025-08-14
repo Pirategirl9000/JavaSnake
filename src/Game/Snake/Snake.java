@@ -201,7 +201,6 @@ public class Snake {
         if (!hasMoved) { return; }
 
         boolean isOneSegment = (segments.size() == 1);
-        System.out.println(isOneSegment);
 
         switch (direction.toLowerCase()) {
             case "up":
