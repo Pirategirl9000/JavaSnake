@@ -81,7 +81,7 @@ public class Food extends Segment {
     private boolean isOverlappingSnake(ArrayList<SnakeSegment> segments, SnakeSegment food) {
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < segments.size(); i++) {
-            if (segments.get(i).equals(food)) {
+            if (!segments.get(i).equals(food)) {
                 return true;
             }
         }
