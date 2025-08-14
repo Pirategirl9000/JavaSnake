@@ -20,6 +20,11 @@ public class Snake {
     private final int SPEED;
 
     /**
+     * Tracks whether the snake has moved once on this direction. Prevents frame perfect 180's
+     */
+    private boolean hasMoved = false;
+
+    /**
      * Height of a segment in pixels, should align on a 1920x1080 display
      */
     @SuppressWarnings("SpellCheckingInspection")  // Shhhhhhh
@@ -151,6 +156,7 @@ public class Snake {
         }
 
         positions.add(0, new Integer[]{newX, newY});  // Add the new head to the positional array
+        hasMoved = true;
     }
 
     /**
@@ -188,6 +194,12 @@ public class Snake {
      * @throws IllegalArgumentException if direction is invalid
      */
     public void changeDirection(String direction) throws IllegalArgumentException {
+
+        // Checks to see if they had just turned and haven't moved in that direction yet
+        // This prevents the player from pressing two directional keys on the same frame to do a full 180
+        // Perfect 180's should not be allowed in snake or in general since they technically force the head through its body
+        if (!hasMoved) { return; }
+
         boolean isOneSegment = (segments.size() == 1);
         System.out.println(isOneSegment);
 
@@ -211,5 +223,7 @@ public class Snake {
             default:
                 throw new IllegalArgumentException("Invalid direction");
         }
+
+        hasMoved = false;  // Prevents 180 turns
     }
 }
