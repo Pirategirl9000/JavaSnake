@@ -1,6 +1,7 @@
 # Violet's Snake Game
 #### A customizable snake experience written in Java</h4>
 
+![Gameplay](Gameplay.gif)
 ### *Controls*
 
 | Keys       | Action                      |
