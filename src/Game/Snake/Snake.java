@@ -187,15 +187,10 @@ public class Snake {
             segments.get(i).move(positions.get(i-1));
         }
 
-        // Collision logic should go here
+        // Collision checks
+        collisionCheck();
 
-        // Food collision
-        if (segments.get(0).equals(food)) {
-            eat();
-        }
-
-
-        // Here we should add any new
+        // If the snake has eaten last frame then we increase it's size by 1, otherwise we pop the last position since we no longer need that position for movement calculations
         if (hasEaten) {
             hasEaten = false;
             addSegment();
@@ -212,6 +207,24 @@ public class Snake {
      */
     private void addSegment() {
         segments.add(new SnakeSegment(positions.get(positions.size() - 1)));
+    }
+
+    private void collisionCheck() {
+        SnakeSegment head = segments.get(0);
+
+        // Food collision
+        //noinspection EqualsBetweenInconvertibleTypes
+        if (head.equals(food)) {
+            eat();
+        }
+
+        // Body Collision
+        for (int i = 1; i < segments.size(); i++) {
+            if (head.equals(segments.get(i))) {
+                killSnake();
+            }
+        }
+
     }
 
     /**
